@@ -1,0 +1,19 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: nginx-route
+  namespace: plugin-demo
+spec:
+  http:
+  - name: rule1
+    match:
+      hosts:
+      - nginx-dev.innerdata.ovh
+      paths:
+      - /*
+    backends:
+    - serviceName: nginx
+      servicePort: 80
+    authentication:
+      enable: true
+      type: keyAuth
